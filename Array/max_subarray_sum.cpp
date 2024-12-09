@@ -20,17 +20,39 @@
 
 // [Naive Approach] By iterating over all subarrays – O(n^2) Time and O(1) Space
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int maxSubarraySum(vector<int> &arr) {
+//     int n = arr.size(), res = arr[0];
+//     for(int i = 0; i < n; i++) {
+//         int currSum = 0;
+//         for(int j = i; j < n; j++) {
+//             currSum += arr[j];
+//             res = max(currSum, res);
+//         }
+//     }
+//     return res;
+// }
+
+// int main() {
+//     vector<int> arr = {2, 3, -8, 7, -1, 2, 3};
+//     cout << maxSubarraySum(arr);
+//     return 0;
+// }
+
+// [Expected Approach] Using Kadane’s Algorithm – O(n) Time and O(1) Space
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int maxSubarraySum(vector<int> &arr) {
-    int n = arr.size(), res = arr[0];
-    for(int i = 0; i < n; i++) {
-        int currSum = 0;
-        for(int j = i; j < n; j++) {
-            currSum += arr[j];
-            res = max(currSum, res);
-        }
+    int n = arr.size();
+    int res = arr[0];
+    int maxEnding = arr[0];
+    for(int i = 1; i < n; i++) {
+        maxEnding = max(maxEnding + arr[i] , arr[i]);
+        res = max(res, maxEnding);
     }
     return res;
 }

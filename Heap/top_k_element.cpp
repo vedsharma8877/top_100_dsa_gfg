@@ -5,7 +5,7 @@
 using namespace std;
 
 bool compare(pair<int, int> p1, pair<int, int> p2) {
-    if(p1.second > p2.second)
+    if(p1.second == p2.second)
         return p1.first > p2.first;
     return p1.second > p2.second;
 }

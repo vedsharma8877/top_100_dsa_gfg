@@ -47,39 +47,75 @@ using namespace std;
 //     return 0;
 // }
 
-
 // Time Complexity: O(N), For the recursive calls
 // Auxiliary Space: O(N), For the Recursion call Stack
 
-void deleteMidUtil(stack<int>& st, int sizeOfStack, int current) {
-    if(current == sizeOfStack/2) {
+// void deleteMidUtil(stack<int>& st, int sizeOfStack, int current) {
+//     if(current == sizeOfStack/2) {
+//         st.pop();
+//         return;
+//     }
+//     int x = st.top();
+//     st.pop();
+//     current += 1;
+//     deleteMidUtil(st, sizeOfStack, current);
+//     st.push(x);
+// }
+
+// void deleteMid(stack<int>& s, int sizeOfStack) {
+//     deleteMidUtil(s, sizeOfStack, 0);
+// }
+
+// int main() {
+//     stack<int> st;
+//     st.push(1);
+//     st.push(2);
+//     st.push(3);
+//     st.push(4);
+//     st.push(5);
+//     st.push(6);
+//     st.push(7);
+//     deleteMid(st, st.size());
+//     while(!st.empty()) {
+//         cout << st.top() << " ";
+//         st.pop();
+//     }
+//     return 0;
+// }
+
+// Delete middle element of a stack using another stack
+
+// Time Complexity: O(N), For the while loop
+// Auxiliary Space: O(N), for temp stack space.
+
+void deleteMid(stack<char>& st) {
+    int n = st.size(), count = 0;
+    stack<int> temp;
+    while(count < n/2) {
+        temp.push(st.top());
         st.pop();
-        return;
+        count++;
     }
-    int x = st.top();
     st.pop();
-    current += 1;
-    deleteMidUtil(st, sizeOfStack, current);
-    st.push(x);
+    while(!temp.empty()) {
+        st.push(temp.top());
+        temp.pop();
+    }
 }
 
-void deleteMid(stack<int>& s, int sizeOfStack) {
-    deleteMidUtil(s, sizeOfStack, 0);
-}
-
-int main() {
-    stack<int> st;
-    st.push(1);
-    st.push(2);
-    st.push(3);
-    st.push(4);
-    st.push(5);
-    st.push(6);
-    st.push(7);
-    deleteMid(st, st.size());
+int main()
+{
+    stack<char> st;
+    st.push('1');
+    st.push('2');
+    st.push('3');
+    st.push('4');
+    st.push('5');
+    st.push('6');
+    st.push('7');
+    deleteMid(st);
     while(!st.empty()) {
         cout << st.top() << " ";
         st.pop();
     }
-    return 0;
 }
